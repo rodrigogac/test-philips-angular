@@ -1,0 +1,131 @@
+<div class=" container mt-3 ml-5">
+    <h1 class=" mb-10">Playoffs</h1>
+
+
+    <button class="text-center mb-10" (click)="onPlayAgin()">Playoffs</button> <label class="ml-5">start matches in the event of a tie, I clicked the button to break the match.</label>
+
+    <div *ngFor="let team of teams ; index as i">
+        <ul class="list-group list-group-horizontal">
+
+
+            <li class="list-group-item lines-width-300">
+                <h1 class="text-center"> {{ team.team1 }}</h1>
+            </li>
+
+            <li class="list-group-item lines-width-100">
+
+                <h1 class="text-center " *ngIf="team.resultGametem1 != team.resultGametem2; else draw">{{ team.resultGametem1 + " X " + team.resultGametem2 }}</h1>
+
+                <ng-template #draw>
+
+                    <h1 class="text-center bg-warning">{{ team.resultGametem1 + " X " + team.resultGametem2 }}</h1>
+                </ng-template>
+            </li>
+            <li class="list-group-item lines-width-300">
+                <h1 class="text-center"> {{ team.team2 }}</h1>
+            </li>
+
+            <li class="list-group-item" *ngIf="team.resultGametem1 != team.resultGametem2; else drawButton">
+                <button class="text-center disabled" (click)="onClickMe(i)">Tiebreaker</button>
+            </li>
+            <ng-template #drawButton>
+
+                <li class="list-group-item bg-warning">
+                    <button class="text-center " (click)="onClickMe(i)">Tiebreaker</button>
+                </li>
+            </ng-template>
+
+        </ul>
+
+    </div>
+
+
+    <hr>
+    <button class="text-center" (click)="onNextStage()">Semi-finals</button><label class="ml-5">After the teams have qualified we can make a new round to define who will be in the final</label>
+
+
+
+
+    <div *ngFor="let team of octaves ; index as i">
+        <ul class="list-group list-group-horizontal" *ngIf="team.classified1 != 'classified'">
+
+
+            <li class="list-group-item lines-width-300">
+                <h1 class="text-center"> {{ team.classified1 }}</h1>
+            </li>
+
+            <li class="list-group-item lines-width-100">
+
+                <h1 class="text-center " *ngIf="team.resultGametem1 != team.resultGametem2; else draw">{{ team.resultGametem1 + " X " + team.resultGametem2 }}</h1>
+
+                <ng-template #draw>
+
+                    <h1 class="text-center bg-warning">{{ team.resultGametem1 + " X " + team.resultGametem2 }}</h1>
+                </ng-template>
+            </li>
+            <li class="list-group-item lines-width-300">
+                <h1 class="text-center"> {{ team.classified2 }}</h1>
+            </li>
+
+            <li class="list-group-item" *ngIf="team.resultGametem1 != team.resultGametem2; else drawButton">
+                <button class="text-center disabled" (click)="getDataSemi(i)">Tiebreaker</button>
+            </li>
+            <ng-template #drawButton>
+
+                <li class="list-group-item bg-warning">
+                    <button class="text-center " (click)="getDataSemi(i)">Tiebreaker</button>
+                </li>
+            </ng-template>
+
+        </ul>
+
+    </div>
+
+
+
+
+    <hr>
+    <button class="text-center" (click)="onFinal()">Final</button><label class="ml-5">The great Final!</label>
+
+
+
+
+    <div *ngFor="let team of endGame ; index as i">
+        <ul class="list-group list-group-horizontal" *ngIf="team.classified1 != 'classified'">
+
+
+            <li class="list-group-item lines-width-300">
+                <h1 class="text-center"> {{ team.classified1 }}</h1>
+            </li>
+
+            <li class="list-group-item lines-width-100">
+
+                <h1 class="text-center " *ngIf="team.resultGametem1 != team.resultGametem2; else draw">{{ team.resultGametem1 + " X " + team.resultGametem2 }}</h1>
+
+                <ng-template #draw>
+
+                    <h1 class="text-center bg-warning">{{ team.resultGametem1 + " X " + team.resultGametem2 }}</h1>
+                </ng-template>
+            </li>
+            <li class="list-group-item lines-width-300">
+                <h1 class="text-center"> {{ team.classified2 }}</h1>
+            </li>
+
+            <li class="list-group-item" *ngIf="team.resultGametem1 != team.resultGametem2; else drawButton">
+                <button class="text-center disabled" (click)="getDataFinal(i)">Tiebreaker</button>
+            </li>
+            <ng-template #drawButton>
+
+                <li class="list-group-item bg-warning">
+                    <button class="text-center " (click)="getDataFinal(i)">Tiebreaker</button>
+                </li>
+            </ng-template>
+
+        </ul>
+
+    </div>
+
+
+
+
+</div>

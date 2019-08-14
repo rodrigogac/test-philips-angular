@@ -1,0 +1,32 @@
+<div class=" container mt-3 ml-5 ">
+    <h1>Welcome to Brazil Cup</h1>
+
+    <h2>Group A </h2>
+    <div class="row mb-5 align-items-start">
+
+
+
+        <div *ngFor="let image of images; index as i">
+
+            <div class="col-sm-4" *ngIf="i>3">
+                <app-image [url]="image.url " [description]="image.description "></app-image>
+            </div>
+
+        </div>
+
+    </div>
+
+    <h2>Group B </h2>
+    <div class="row align-items-start">
+
+
+        <div *ngFor="let image of images; index as i">
+
+            <div class="col-sm-4" *ngIf="i<4">
+                <app-image [url]="image.url " [description]="image.description "></app-image>
+            </div>
+
+        </div>
+
+    </div>
+</div>
